@@ -180,37 +180,67 @@ public class Solution {
 
 
 
-1. **第一次迭代（i=0）：**
-
-   - 当前数字：3
-   - 计算 `complement`（目标值与当前数字的差值）：`complement = 6 - 3 = 3`
-   - 在哈希表中查找是否存在 `complement`（3），但哈希表为空，因此不执行此条件。
-   - 将当前数字 `3` 及其索引 `0` 添加到哈希表中。
-
-   此时哈希表内容：`{ 3: 0 }`
-
-2. **第二次迭代（i=1）：**
-
-   - 当前数字：2
-   - 计算 `complement`：`complement = 6 - 2 = 4`
-   - 在哈希表中查找是否存在 `complement`（4），但哈希表为空，因此不执行此条件。
-   - 将当前数字 `2` 及其索引 `1` 添加到哈希表中。
-
-   此时哈希表内容：`{ 3: 0, 2: 1 }`
-
-3. **第三次迭代（i=2）：**
-
-   - 当前数字：4
-   - 计算 `complement`：`complement = 6 - 4 = 2`
-   - 在哈希表中查找是否存在 `complement`（2），发现存在，返回匹配的两个数字的索引：`[1, 2]`
-
-   由于找到了答案，循环结束，返回结果 `[1, 2]`。
-
-
-
 | 改动前                                                       | 改动后                                                       |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | <img src="./img/image-20240115174940043.png" alt="image-20240115174940043" style="zoom:50%;" /> | <img src="./img/image-20240115175010856.png" alt="image-20240115175010856" style="zoom: 50%;" /> |
+
+
+
+##### 面试脚本
+
+https://chat.openai.com/c/71aadd95-8269-4652-bcc7-699867198a83
+
+### 1. Overall Approach:
+
+**Goal:** Find two numbers in the array that add up to the given target.
+
+**Approach:**
+
+- Utilize a hash table to efficiently store and look up values.
+- Iterate through the array, and for each element, check if its complement (target minus the current element) is in the hash table.
+
+### 2. Step-by-Step Explanation:
+
+#### Step 1:
+
+**Initialization:**
+
+- Initialize an empty hash table to store encountered elements.
+
+#### Step 2:
+
+**Iterate Through the Array:**
+
+- For each element in the array:
+  - Calculate the complement (target minus the current element).
+  - Check if the complement exists in the hash table.
+
+#### Step 3:
+
+**Check Complement:**
+
+- If the complement is found in the hash table:
+  - Return the indices of the current element and its complement.
+
+#### Step 4:
+
+**Update Hash Table:**
+
+- If the complement is not found:
+  - Add the current element and its index to the hash table.
+
+#### Step 5:
+
+**Completion:**
+
+- If the loop completes without finding a match:
+  - Return an empty array to indicate no solution.
+
+### 3. English Explanation:
+
+Let's start with initializing an empty hash table. As we iterate through the array, for each element, we calculate its complement, which is the target minus the current element. We then check if this complement exists in the hash table. If it does, we've found our pair, and we return the indices. If not, we add the current element and its index to the hash table for future reference. If the loop completes without finding a match, we return an empty array, signaling that no solution exists.
+
+This approach ensures an efficient runtime by leveraging the constant-time lookup capability of a hash table. The key is to keep track of encountered elements and their indices to quickly identify pairs. Please feel free to ask if you need clarification on any specific step!
 
 
 
